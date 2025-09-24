@@ -12,7 +12,7 @@
       }
 
       // Fetch properties from backend
-      const res = await fetch("http://localhost:5000/api/properties", {
+      const res = await fetch("https://cleaning-system-backend-3.onrender.com/api/properties", {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`
