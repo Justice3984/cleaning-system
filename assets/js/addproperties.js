@@ -8,7 +8,7 @@
     const status = document.getElementById("status").value;
 
     try {
-      const res = await fetch("http://localhost:5000/api/properties/", {
+      const res = await fetch("https://cleaning-system-backend-3.onrender.com/api/properties/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
