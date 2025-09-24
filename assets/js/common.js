@@ -2,7 +2,6 @@
 
 async function updateNotificationBadge() {
   try {
-    const token = localStorage.getItem("token"); // assuming login stores JWT
     if (!token) return;
 
     const res = await fetch(`${API_BASE}/api/notifications/unread-count`, {
