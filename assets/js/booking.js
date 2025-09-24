@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", loadBookings);
 
+ const API_BASE = "https://cleaning-system-backend-3.onrender.com";
+
 async function loadBookings() {
   try {
-    const response = await fetch("http://localhost:5000/api/bookings");
+    const response = await fetch(`${API_BASE}/api/bookings`);
     if (!response.ok) throw new Error("Failed to fetch bookings");
 
     const bookings = await response.json();
@@ -21,7 +23,7 @@ async function loadBookings() {
 
 async function simulateBooking() {
   try {
-    const response = await fetch("http://localhost:5000/api/simulate/simulate-booking", {
+    const response = await fetch(`${API_BASE}/api/simulate/simulate-booking`, {
       method: "POST",
       headers: { "Content-Type": "application/json" }
     });

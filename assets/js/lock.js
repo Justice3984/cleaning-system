@@ -1,8 +1,8 @@
-
+ const API_BASE = "https://cleaning-system-backend-3.onrender.com";
   document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://localhost:5000/api/locks", {
+      const res = await fetch(`${API_BASE}/api/locks`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const locks = await res.json();

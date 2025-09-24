@@ -1,10 +1,10 @@
-const API_BASE = "http://localhost:5000/api"; // change to your backend URL
+ const API_BASE = "https://cleaning-system-backend-3.onrender.com"; // change to your backend URL
 const token = localStorage.getItem("token");  // your JWT token from login
 
 // Load all notifications
 async function loadNotifications() {
   try {
-    const res = await fetch(`${API_BASE}/notifications`, {
+    const res = await fetch(`${API_BASE}/api/notifications`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -35,7 +35,7 @@ async function loadNotifications() {
 // Load unread notification count and update badge
 async function updateUnreadCount() {
   try {
-    const res = await fetch(`${API_BASE}/notifications/unread-count`, {
+    const res = await fetch(`${API_BASE}/api/notifications/unread-count`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 

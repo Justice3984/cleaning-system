@@ -1,4 +1,4 @@
-
+  const API_BASE = "https://cleaning-system-backend-3.onrender.com";
   document.getElementById("bookingForm").addEventListener("submit", async function (e) {
     e.preventDefault(); // stop normal form submission
 
@@ -10,7 +10,7 @@
     const status = document.getElementById("status").value;
 
     try {
-      const res = await fetch("http://localhost:5000/api/bookings/", {
+      const res = await fetch(`${API_BASE}/api/bookings/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
