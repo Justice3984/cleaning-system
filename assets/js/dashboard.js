@@ -10,45 +10,53 @@ const decoded = jwt_decode(token);
 
 // Fetch wrapper with JWT
 async function fetchWithAuth(url) {
-  return fetch(url, {
+  const res = await fetch(url, {
     headers: { Authorization: "Bearer " + token }
   });
+  return res.json();
+}
+
+// Normalize helper (handles array or object responses)
+function normalizeResponse(data, key) {
+  if (Array.isArray(data)) return data;
+  if (data[key]) return data[key];
+  if (data.data) return data.data;
+  return []; // fallback
 }
 
 async function loadDashboard() {
   try {
-    // Call your backend APIs
-    const [bookingsRes, propertiesRes, locksRes, notificationsRes] = await Promise.all([
+    // Call backend APIs
+    const [bookingsRaw, propertiesRaw, locksRaw, notificationsRaw] = await Promise.all([
       fetchWithAuth(`${API_BASE}/api/bookings`),
       fetchWithAuth(`${API_BASE}/api/properties`),
       fetchWithAuth(`${API_BASE}/api/locks`),
       fetchWithAuth(`${API_BASE}/api/notifications`)
     ]);
 
-    const [bookings, properties, locks, notifications] = await Promise.all([
-      bookingsRes.json(),
-      propertiesRes.json(),
-      locksRes.json(),
-      notificationsRes.json()
-    ]);
+    // Normalize data
+    const bookings = normalizeResponse(bookingsRaw, "bookings");
+    const properties = normalizeResponse(propertiesRaw, "properties");
+    const locks = normalizeResponse(locksRaw, "locks");
+    const notifications = normalizeResponse(notificationsRaw, "notifications");
 
-    // Update stat cards
+    // --- Update stat cards ---
     document.getElementById("bookingCount").textContent = `${bookings.length} Active`;
     document.getElementById("propertyCount").textContent = `${properties.length} Listed`;
     document.getElementById("lockCount").textContent = `${locks.length} Active`;
-    document.getElementById("notificationCount").textContent = `${notifications.filter(n => !n.read).length} Unread`;
+    document.getElementById("notificationCount").textContent =
+      `${notifications.filter(n => !n.read).length} Unread`;
 
-    // Update notification badge
+    // --- Update notification badge ---
     const badge = document.getElementById("notificationBadge");
     const unread = notifications.filter(n => !n.read).length;
     badge.style.display = unread > 0 ? "inline-block" : "none";
     badge.textContent = unread;
 
-    // Populate activity table
+    // --- Populate activity table ---
     const activityTable = document.getElementById("activityTable");
     activityTable.innerHTML = "";
 
-    // Mix latest activities
     const activities = [];
 
     bookings.slice(-2).forEach(b => {
@@ -75,7 +83,6 @@ async function loadDashboard() {
       });
     });
 
-    // Render
     if (activities.length === 0) {
       activityTable.innerHTML = `<tr><td colspan="3">No recent activity</td></tr>`;
     } else {
