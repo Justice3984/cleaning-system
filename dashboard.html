@@ -44,32 +44,31 @@
 
 
     <section class="cards">
-      <div class="card"><h2>Bookings</h2><p>24 Active</p></div>
-      <div class="card"><h2>Properties</h2><p>8 Listed</p></div>
-      <div class="card"><h2>Locks</h2><p>5 Active</p></div>
-      <div class="card"><h2>Notifications</h2><p>12 Unread</p></div>
-    </section>
+  <div class="card"><h2>Bookings</h2><p id="bookingCount">Loading...</p></div>
+  <div class="card"><h2>Properties</h2><p id="propertyCount">Loading...</p></div>
+  <div class="card"><h2>Locks</h2><p id="lockCount">Loading...</p></div>
+  <div class="card"><h2>Notifications</h2><p id="notificationCount">Loading...</p></div>
+</section>
 
-    <section class="overview table-container">
-      <h2>Recent Activity</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Event</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>2025-09-06</td><td>New Booking</td><td>John Doe booked Apt 21</td></tr>
-          <tr><td>2025-09-05</td><td>Lock Created</td><td>Lock code LOCK-432891</td></tr>
-          <tr><td>2025-09-05</td><td>Notification</td><td>Payment received</td></tr>
-        </tbody>
-      </table>
-    </section>
+<section class="overview table-container">
+  <h2>Recent Activity</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody id="activityTable">
+      <tr><td colspan="3">Loading...</td></tr>
+    </tbody>
+  </table>
+</section>
+
   </main>
   <script src="./assets/js/dashboard.js"></script>
   <script src="./assets/js/common.js"></script>
-  <script src="./assets/js/dash.js"></script>
+ 
 </body>
 </html>

@@ -1,41 +1,23 @@
-// ================== DASHBOARD WITH ROLE CHECK ================== //
 const API_BASE = "https://cleaning-system-backend-3.onrender.com";
 const token = localStorage.getItem("token");
 
+// Redirect if no token
 if (!token) {
-  // No login, redirect
   window.location.href = "./login.html";
-} else {
-  // Decode token
-  const decoded = jwt_decode(token);
-  console.log("User info:", decoded);
-
-  // Allow only known roles
-  if (["admin", "staff", "host"].includes(decoded.role)) {
-    // ✅ Load dashboard data
-    loadDashboard(decoded);
-  } else {
-    alert("Role not recognized!");
-    localStorage.removeItem("token");
-    window.location.href = "./login.html";
-  }
 }
 
-// Helper: fetch with Authorization header
-async function fetchWithAuth(url, options = {}) {
+const decoded = jwt_decode(token);
+
+// Fetch wrapper with JWT
+async function fetchWithAuth(url) {
   return fetch(url, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + token,
-      ...(options.headers || {})
-    }
+    headers: { Authorization: "Bearer " + token }
   });
 }
 
-// Main dashboard loader
-async function loadDashboard(user) {
+async function loadDashboard() {
   try {
+    // Call your backend APIs
     const [bookingsRes, propertiesRes, locksRes, notificationsRes] = await Promise.all([
       fetchWithAuth(`${API_BASE}/api/bookings`),
       fetchWithAuth(`${API_BASE}/api/properties`),
@@ -50,49 +32,35 @@ async function loadDashboard(user) {
       notificationsRes.json()
     ]);
 
-    // === Filter data based on role (optional) ===
-    let filteredBookings = bookings;
-    let filteredProperties = properties;
+    // Update stat cards
+    document.getElementById("bookingCount").textContent = `${bookings.length} Active`;
+    document.getElementById("propertyCount").textContent = `${properties.length} Listed`;
+    document.getElementById("lockCount").textContent = `${locks.length} Active`;
+    document.getElementById("notificationCount").textContent = `${notifications.filter(n => !n.read).length} Unread`;
 
-    if (user.role === "host") {
-      // Example: only show host’s own properties/bookings
-      filteredBookings = bookings.filter(b => b.hostId === user.id);
-      filteredProperties = properties.filter(p => p.hostId === user.id);
-    }
-
-    // === Update stat cards ===
-    document.querySelector(".cards .card:nth-child(1) p").textContent =
-      `${filteredBookings.length} Active`;
-    document.querySelector(".cards .card:nth-child(2) p").textContent =
-      `${filteredProperties.length} Listed`;
-    document.querySelector(".cards .card:nth-child(3) p").textContent =
-      `${locks.length} Active`;
-    document.querySelector(".cards .card:nth-child(4) p").textContent =
-      `${notifications.filter(n => !n.read).length} Unread`;
-
-    // === Notification badge ===
+    // Update notification badge
     const badge = document.getElementById("notificationBadge");
     const unread = notifications.filter(n => !n.read).length;
-    if (unread > 0) {
-      badge.textContent = unread;
-      badge.style.display = "inline-block";
-    } else {
-      badge.style.display = "none";
-    }
+    badge.style.display = unread > 0 ? "inline-block" : "none";
+    badge.textContent = unread;
 
-    // === Recent Activity ===
-    const activity = [];
+    // Populate activity table
+    const activityTable = document.getElementById("activityTable");
+    activityTable.innerHTML = "";
 
-    filteredBookings.slice(-3).forEach(b => {
-      activity.push({
+    // Mix latest activities
+    const activities = [];
+
+    bookings.slice(-2).forEach(b => {
+      activities.push({
         date: new Date(b.createdAt).toLocaleDateString(),
         event: "New Booking",
-        details: `${b.guest?.name || "Unknown"} booked ${b.property?.title || "a property"}`
+        details: `${b.guest?.name || "Unknown"} booked ${b.property?.name || "a property"}`
       });
     });
 
     locks.slice(-2).forEach(l => {
-      activity.push({
+      activities.push({
         date: new Date(l.createdAt).toLocaleDateString(),
         event: "Lock Created",
         details: `Lock code ${l.code}`
@@ -100,26 +68,31 @@ async function loadDashboard(user) {
     });
 
     notifications.slice(-2).forEach(n => {
-      activity.push({
+      activities.push({
         date: new Date(n.createdAt).toLocaleDateString(),
         event: "Notification",
         details: n.message
       });
     });
 
-    // Render activity table
-    const tbody = document.querySelector(".overview table tbody");
-    tbody.innerHTML = "";
-    activity.slice(-5).reverse().forEach(a => {
-      tbody.innerHTML += `
-        <tr>
-          <td>${a.date}</td>
-          <td>${a.event}</td>
-          <td>${a.details}</td>
-        </tr>`;
-    });
+    // Render
+    if (activities.length === 0) {
+      activityTable.innerHTML = `<tr><td colspan="3">No recent activity</td></tr>`;
+    } else {
+      activities.reverse().forEach(a => {
+        activityTable.innerHTML += `
+          <tr>
+            <td>${a.date}</td>
+            <td>${a.event}</td>
+            <td>${a.details}</td>
+          </tr>`;
+      });
+    }
 
   } catch (err) {
     console.error("Error loading dashboard:", err);
   }
 }
+
+// Run
+loadDashboard();
