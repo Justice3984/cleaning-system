@@ -1,5 +1,5 @@
 // ========================= BOOKINGS ENHANCEMENTS ========================= //
-
+const API_BASE = "https://cleaning-system-backend-3.onrender.com/api"
 // Load bookings dynamically with "View" button
 async function loadBookings() {
   try {
