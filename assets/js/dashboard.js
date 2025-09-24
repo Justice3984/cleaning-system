@@ -34,6 +34,12 @@ async function loadDashboard() {
       fetchWithAuth(`${API_BASE}/api/notifications`)
     ]);
 
+    // Debug logs
+    console.log("Bookings raw:", bookingsRaw);
+    console.log("Properties raw:", propertiesRaw);
+    console.log("Locks raw:", locksRaw);
+    console.log("Notifications raw:", notificationsRaw);
+
     // Normalize data
     const bookings = normalizeResponse(bookingsRaw, "bookings");
     const properties = normalizeResponse(propertiesRaw, "properties");
