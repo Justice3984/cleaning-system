@@ -7,6 +7,9 @@
     const host = document.getElementById("host").value;
     const status = document.getElementById("status").value;
 
+    const token = localStorage.getItem("token");
+    console.log(" Token in localStorage:", token);
+
     try {
       const res = await fetch("https://cleaning-system-backend-3.onrender.com/api/properties/", {
         method: "POST",
