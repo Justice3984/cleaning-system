@@ -1,66 +1,97 @@
-const API_BASE = "https://cleaning-system-backend-3.onrender.com";
+// ./assets/js/addbooking.js
+// Combined: dynamic property dropdown + booking submit
+const API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+  ? "http://localhost:5000"
+  : "https://cleaning-system-backend-3.onrender.com";
 
-//  Populate property dropdown on page load
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", async () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "./login.html";
+    return;
+  }
+
+  // Populate property select
   const propertySelect = document.getElementById("property");
-
-  try {
-    const res = await fetch(`${API_BASE}/api/properties`, {
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      data.forEach(prop => {
-        const option = document.createElement("option");
-        option.value = prop._id; // backend should send property _id
-        option.textContent = prop.name; // show property name
-        propertySelect.appendChild(option);
+  if (propertySelect) {
+    try {
+      const res = await fetch(`${API_BASE}/api/properties`, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-    } else {
-      console.error("Failed to load properties:", data.message);
-      alert("Could not load properties. Please try again.");
+
+      if (!res.ok) {
+        console.error("Failed to fetch properties:", res.status, await res.text());
+        propertySelect.innerHTML = `<option value="">-- Could not load properties --</option>`;
+      } else {
+        const properties = await res.json();
+        // keep single placeholder
+        propertySelect.innerHTML = `<option value="">-- Select Property --</option>`;
+        properties.forEach(p => {
+          const opt = document.createElement("option");
+          opt.value = p._id; // property id for backend
+          // label fallback: name || title || address-like fallback
+          opt.textContent = p.name || p.title || `${p.location || ""}`.trim() || "Property";
+          propertySelect.appendChild(opt);
+        });
+      }
+    } catch (err) {
+      console.error("Error loading properties:", err);
+      propertySelect.innerHTML = `<option value="">-- Error loading properties --</option>`;
     }
-  } catch (err) {
-    console.error("Error fetching properties:", err);
-    alert("Error connecting to server while loading properties.");
   }
-});
 
-// ✅ Booking form submission
-document.getElementById("bookingForm").addEventListener("submit", async function (e) {
-  e.preventDefault(); // stop normal form submission
+  // Attach form submit handler (prefer form with id "bookingForm", fallback to first <form>)
+  const bookingForm = document.getElementById("bookingForm") || document.querySelector("form");
+  if (!bookingForm) {
+    console.error("Booking form not found on the page.");
+    return;
+  }
 
-  const guest = document.getElementById("guest").value;
-  const email = document.getElementById("email").value;
-  const property = document.getElementById("property").value;
-  const checkin = document.getElementById("checkin").value;
-  const checkout = document.getElementById("checkout").value;
-  const status = document.getElementById("status").value;
+  bookingForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await fetch(`${API_BASE}/api/bookings/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token") // include JWT
-      },
-      body: JSON.stringify({ guest, email, property, checkin, checkout, status })
-    });
+    const guestName = (document.getElementById("guest")?.value || "").trim();
+    const guestEmail = (document.getElementById("email")?.value || "").trim();
+    const propertyId = document.getElementById("property")?.value;
+    const checkInDate = document.getElementById("checkin")?.value;
+    const checkOutDate = document.getElementById("checkout")?.value;
+    const status = document.getElementById("status")?.value || "Pending";
 
-    const data = await res.json();
+    // Minimal validation
+    if (!propertyId) { alert("Please select a property."); return; }
+    if (!guestName || !guestEmail) { alert("Please enter guest name and email."); return; }
+    if (!checkInDate || !checkOutDate) { alert("Please select check-in and check-out dates."); return; }
+    if (new Date(checkInDate) >= new Date(checkOutDate)) { alert("Check-out must be after check-in."); return; }
 
-    if (res.ok) {
-      alert("Booking created successfully!");
-      window.location.href = "./bookings.html"; // redirect back to bookings list
-    } else {
-      alert(data.message || "Failed to create booking");
+    try {
+      const res = await fetch(`${API_BASE}/api/bookings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          propertyId,
+          guestName,
+          guestEmail,
+          checkInDate,
+          checkOutDate,
+          status
+        })
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok) {
+        alert("Booking created successfully!");
+        window.location.href = "./bookings.html";
+      } else {
+        console.error("Create booking failed:", res.status, data);
+        alert(data.message || "Failed to create booking");
+      }
+    } catch (err) {
+      console.error("Error connecting to server:", err);
+      alert("Error connecting to server. Check console for details.");
     }
-  } catch (err) {
-    console.error(err);
-    alert("Error connecting to server");
-  }
+  });
 });
