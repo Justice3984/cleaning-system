@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/properties.css">
+  <link rel="stylesheet" href="./assets/css/global.css">
+</head>
+<body>
+   <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html" >Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html" class="active">Properties</a>
+      <a href="locks.html">Locks</a>
+      <a href="notifications.html">Notifications <span class="badge" style="display:none;"></span></a>
+      <a href="settings.html">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+  <main class="content">
+     <header class="topbar">
+  <h1>Properties</h1>
+  <div class="user-menu">
+    <button class="user-btn">👤 Admin ▾</button>
+    <div class="dropdown">
+      <a href="profile.html">Profile</a>
+      <a href="signout.html" class="logout">Sign Out</a>
+    </div>
+  </div>
+</header>
+
+    <!-- Action Button -->
+    <div class="actions">
+      <a href="add-property.html" class="btn">Add New Property</a>
+    </div>
+
+    <!-- Properties Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Property ID</th>
+            <th>Property Name</th>
+            <th>Location</th>
+            <th>Host</th>
+            <th>Status</th>
+            <th>Bookings</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example static data -->
+          <tr>
+            <td>PROP001</td>
+            <td>Apartment 21</td>
+            <td>Lagos</td>
+            <td>John Doe</td>
+            <td><span class="status active">Active</span></td>
+            <td>5</td>
+            <td><a href="property-details.html">View</a></td>
+          </tr>
+          <tr>
+            <td>PROP002</td>
+            <td>Villa Ocean</td>
+            <td>Port Harcourt</td>
+            <td>Mary Ann</td>
+            <td><span class="status active">Active</span></td>
+            <td>3</td>
+            <td><a href="property-details.html">View</a></td>
+          </tr>
+          <tr>
+            <td>PROP003</td>
+            <td>City Loft</td>
+            <td>Abuja</td>
+            <td>David Lee</td>
+            <td><span class="status inactive">Inactive</span></td>
+            <td>0</td>
+            <td><a href="property-details.html">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script src="./assets/js/properties.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+const API_BASE = "http://localhost:5000/api"; // adjust to your backend
+
+async function updateNotificationBadge() {
+  try {
+    const token = localStorage.getItem("token"); // assuming login stores JWT
+    if (!token) return;
+
+    const res = await fetch(`${API_BASE}/notifications/unread-count`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const data = await res.json();
+    const badge = document.getElementById("notificationBadge");
+
+    if (badge) {
+      if (data.count > 0) {
+        badge.textContent = data.count;
+        badge.style.display = "inline-block";
+      } else {
+        badge.textContent = "";
+        badge.style.display = "none";
+      }
+    }
+  } catch (err) {
+    console.error("Error updating notification badge:", err);
+  }
+}
+
+// Run immediately and refresh every 30 seconds
+updateNotificationBadge();
+setInterval(updateNotificationBadge, 30000);

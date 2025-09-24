@@ -1,0 +1,7 @@
+task left
+
+simulate Airbnb frontend
+ui improvement
+finalizing backend
+connecting both fronend and backend 
+writing chapter four and five

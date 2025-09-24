@@ -1,0 +1,53 @@
+/* =====================
+   Add Property Page
+===================== */
+
+.form-card {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-card label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #1e293b;
+}
+
+.form-card input,
+.form-card select {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border 0.3s ease, background 0.3s ease;
+}
+
+.form-card input:focus,
+.form-card select:focus {
+  border-color: #3b82f6;
+  background: #fff;
+  outline: none;
+}
+
+.form-card .btn {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 12px 20px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}

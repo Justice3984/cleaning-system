@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Details | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/booking-details.css">
+  <link rel="stylesheet" href="./assets/css/global.css">
+</head>
+<body>
+   <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html">Properties</a>
+      <a href="locks.html">Locks</a>
+      <a href="notifications.html">Notifications <id="notificationBadge" class="badge" style="display:none;"></id=></a>
+      <a href="settings.html">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+     <header class="topbar">
+  <h1>Booking Details</h1>
+  <div class="user-menu">
+    <button class="user-btn">👤 Admin ▾</button>
+    <div class="dropdown">
+      <a href="profile.html">Profile</a>
+      <a href="signout.html" class="logout">Sign Out</a>
+    </div>
+  </div>
+</header>
+
+    <div class="details-card">
+      <h2>Guest Information</h2>
+      <p><strong>Name:</strong> Jane Doe</p>
+      <p><strong>Email:</strong> jane@example.com</p>
+
+      <h2>Property Information</h2>
+      <p><strong>Property:</strong> Apartment 21</p>
+      <p><strong>Location:</strong> Lagos</p>
+      <p><strong>Host:</strong> John Doe</p>
+
+      <h2>Booking Details</h2>
+      <p><strong>Check-In:</strong> 2025-09-10</p>
+      <p><strong>Check-Out:</strong> 2025-09-12</p>
+      <p><strong>Status:</strong> <span class="status active">Confirmed</span></p>
+
+      <div class="form-actions">
+        <button class="btn">Confirm</button>
+        <button class="btn secondary">Cancel</button>
+        <button class="btn">Mark Completed</button>
+        <a href="bookings.html" class="btn secondary">Back</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/dashboard.css">
+  <link rel="stylesheet" href="./assets/css/global.css">
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+  <script>
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "./login.html";
+  }
+</script>
+
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html">Properties</a>
+      <a href="locks.html">Locks</a>
+      <a href="notifications.html">Notifications <span id="notificationBadge" class="badge" style="display:none;"></span></a>
+      <a href="settings.html">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+  <header class="topbar">
+  <h1>Dashboard</h1>
+  <div class="user-menu">
+    <button class="user-btn">👤 Admin ▾</button>
+    <div class="dropdown">
+      <a href="profile.html">Profile</a>
+      <a href="signout.html" class="logout">Sign Out</a>
+    </div>
+  </div>
+</header>
+
+
+
+    <section class="cards">
+      <div class="card"><h2>Bookings</h2><p>24 Active</p></div>
+      <div class="card"><h2>Properties</h2><p>8 Listed</p></div>
+      <div class="card"><h2>Locks</h2><p>5 Active</p></div>
+      <div class="card"><h2>Notifications</h2><p>12 Unread</p></div>
+    </section>
+
+    <section class="overview table-container">
+      <h2>Recent Activity</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2025-09-06</td><td>New Booking</td><td>John Doe booked Apt 21</td></tr>
+          <tr><td>2025-09-05</td><td>Lock Created</td><td>Lock code LOCK-432891</td></tr>
+          <tr><td>2025-09-05</td><td>Notification</td><td>Payment received</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="./assets/js/dashboard.js"></script>
+  <script src="./assets/js/common.js"></script>
+</body>
+</html>

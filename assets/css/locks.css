@@ -1,0 +1,140 @@
+/* =====================
+   Global Styles
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* =====================
+   Sidebar Styles
+===================== */
+.sidebar {
+  width: 240px;
+  background: #1e293b; /* Dark navy */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.sidebar nav a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.sidebar nav a:hover {
+  background: #334155;
+  color: #fff;
+}
+
+.sidebar nav a.active {
+  background: #3b82f6; /* Blue highlight */
+  color: #fff;
+}
+
+/* =====================
+   Main Content Styles
+===================== */
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.topbar h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.user-info {
+  font-size: 1rem;
+  background: #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* =====================
+   Table Styles
+===================== */
+.table-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f1f5f9;
+}
+
+thead th {
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tbody td {
+  padding: 12px;
+  color: #334155;
+}
+
+/* =====================
+   Status Badges
+===================== */
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.status.active {
+  background: #22c55e; /* Green */
+}
+
+.status.inactive {
+  background: #ef4444; /* Red */
+}
+
+.status.pending {
+  background: #f59e0b; /* Orange */
+}

@@ -1,0 +1,56 @@
+/* Center the register form */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f6f9;
+}
+
+.form-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #1e293b;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.alt-link {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.alt-link a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.alt-link a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Property | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/global.css"> 
+  <link rel="stylesheet" href="./assets/css/addproperty.css">
+</head>
+<body>
+   <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html">Properties</a>
+      <a href="locks.html">Locks</a>
+      <a href="notifications.html">Notifications <span class="badge">12</span></a>
+      <a href="settings.html">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+     <header class="topbar">
+  <h1>Add New Property</h1>
+  <div class="user-menu">
+    <button class="user-btn">👤 Admin ▾</button>
+    <div class="dropdown">
+      <a href="profile.html">Profile</a>
+      <a href="signout.html" class="logout">Sign Out</a>
+    </div>
+  </div>
+</header>
+
+    <div class="form-card">
+      <form id="propertyForm">
+    <label>Property Name</label>
+    <input type="text" id="name" placeholder="Enter property name" required>
+
+    <label>Location</label>
+    <input type="text" id="location" placeholder="Enter location" required>
+
+    <label>Host Name</label>
+    <input type="text" id="host" placeholder="Enter host name" required>
+
+    <label for="status">Status</label>
+    <select id="status">
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+
+    <button type="submit" class="btn">Save Property</button>
+  </form>
+
+  </div>
+  </main>
+  <script src="./assets/js/addproperties.js"></script>
+</body>
+</html>

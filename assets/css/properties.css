@@ -1,0 +1,49 @@
+/* =====================
+   Properties Page
+===================== */
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.table-container table td .btn {
+  padding: 6px 12px;         /* smaller than full buttons */
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+/* Status tags */
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #dcfce7;  /* light green */
+  color: #15803d;       /* dark green */
+}
+
+.status.inactive {
+  background: #fee2e2;  /* light red */
+  color: #b91c1c;       /* dark red */
+}
+
+/* Reuse global button style but smaller */
+.btn.small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  text-decoration: none;
+  background-color: #007bff;
+  color: white;
+  transition: background 0.3s;
+}
+
+.btn.small:hover {
+  background-color: #0056b3;
+}
+

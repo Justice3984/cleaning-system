@@ -1,0 +1,29 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f6f9;
+}
+
+.form-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #1e293b;
+}
+
+.form-container .message {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/settings.css">
+  <link rel="stylesheet" href="./assets/css/global.css">
+</head>
+<body>
+  <!-- Sidebar -->
+   <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html" >Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html">Properties</a>
+      <a href="locks.html">Locks</a>
+      <a href="notifications.html">Notifications <span id="notificationBadge" class="badge" style="display:none;"></span></a>
+      <a href="settings.html" class="active">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+        <header class="topbar">
+  <h1>Properties</h1>
+  <div class="user-menu">
+    <button class="user-btn">👤 Admin ▾</button>
+    <div class="dropdown">
+      <a href="profile.html">Profile</a>
+      <a href="signout.html" class="logout">Sign Out</a>
+    </div>
+  </div>
+</header>
+
+    <div class="settings-container">
+      <!-- Profile Section -->
+      <section class="profile-container">
+        <h2>Profile</h2>
+        <form class="profile-form">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" value="John Doe" disabled>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" value="admin@smartstay.com" disabled>
+
+          <label for="role">Role</label>
+          <input type="text" id="role" value="Admin" disabled>
+
+          <button type="button" class="btn">Edit Profile</button>
+          <button type="button" class="btn secondary">Change Password</button>
+        </form>
+      </section>
+
+      <!-- Preferences Section -->
+      <section class="preferences-container">
+        <h2>Preferences</h2>
+        <label>
+          <input type="checkbox" checked> Enable Email Notifications
+        </label><br>
+        <label>
+          <input type="checkbox"> Dark Mode
+        </label>
+      </section>
+    </div>
+  </main>
+  <script src="./assets/js/common.js"></script>
+</body>
+</html>

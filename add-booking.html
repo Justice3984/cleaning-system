@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Booking | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/add-booking.css">
+  <link rel="stylesheet" href="./assets/css/global.css">
+
+ <script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
+    const select = document.getElementById("property");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/properties", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const properties = await res.json();
+
+      properties.forEach(prop => {
+        const option = document.createElement("option");
+        option.value = prop._id;            // backend id (for saving booking/lock)
+        option.textContent = prop.name;    // display name
+        select.appendChild(option);
+      });
+    } catch (err) {
+      console.error("Error loading properties:", err);
+    }
+  });
+</script>
+
+
+</head>
+<body>
+   <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html" >Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html">Properties</a>
+      <a href="locks.html">Locks</a>
+      <a href="notifications.html">Notifications <span id="notificationBadge" class="badge" style="display:none;"></span></a>
+      <a href="settings.html">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+     <header class="topbar">
+  <h1>Add New Booking</h1>
+  <div class="user-menu">
+    <button class="user-btn">👤 Admin ▾</button>
+    <div class="dropdown">
+      <a href="profile.html">Profile</a>
+      <a href="signout.html" class="logout">Sign Out</a>
+    </div>
+  </div>
+</header>
+
+    <div class="form-container">
+      <form action="bookings.html" method="POST">
+        <label for="guest">Guest Name</label>
+        <input type="text" id="guest" name="guest" placeholder="Enter guest name" required>
+
+        <label for="email">Guest Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter guest email" required>
+
+        <label for="property">Property</label>
+        <select id="property" name="property" required>
+          <option value="">-- Select Property --</option>
+        </select>
+
+
+        <label for="checkin">Check-In Date</label>
+        <input type="date" id="checkin" name="checkin" required>
+
+        <label for="checkout">Check-Out Date</label>
+        <input type="date" id="checkout" name="checkout" required>
+
+        <label for="status">Status</label>
+        <select id="status" name="status" required>
+          <option value="Pending">Pending</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Save Booking</button>
+          <a href="bookings.html" class="btn secondary">Back</a>
+        </div>
+      </form>
+    </div>
+  </main>
+<script src="./assets/js/addbooking.js"></script>
+</body>
+</html>

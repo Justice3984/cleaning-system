@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/notifications.css">
+  <link rel="stylesheet" href="./assets/css/global.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html">Properties</a>
+      <a href="locks.html">Locks</a>
+      <!-- Badge starts empty -->
+      <a href="notifications.html" class="active">
+        Notifications <span class="badge" style="display:none;"></span>
+      </a>
+      <a href="settings.html">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <!-- Topbar -->
+    <header class="topbar">
+      <h1>Notifications</h1>
+      <div class="user-menu">
+        <button class="user-btn">👤 Admin ▾</button>
+        <div class="dropdown">
+          <a href="profile.html">Profile</a>
+          <a href="signout.html" class="logout">Sign Out</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Notifications Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Message</th>
+            <th>Type</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="notificationTableBody">
+          <!-- Dynamic rows will be injected by notifications.js -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="./assets/js/notifications.js"></script>
+</body>
+</html>

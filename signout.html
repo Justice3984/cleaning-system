@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Out | SmartStay</title>
+  <!-- Global styles -->
+  <link rel="stylesheet" href="./assets/css/global.css">
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="./assets/css/signout.css">
+</head>
+<body class="auth-page">
+
+  <div class="form-container">
+    <h2>You’ve been signed out</h2>
+    <p class="message">
+      Thank you for using SmartStay. For security, always close your browser after logging out.  
+      <br><br>Redirecting you to login...
+    </p>
+    
+    <a href="login.html" class="btn">Login Again</a>
+  </div>
+
+  <!-- Auto redirect script -->
+  <script>
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 5000); // 5 seconds
+  </script>
+
+</body>
+</html>

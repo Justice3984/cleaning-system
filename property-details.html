@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details | SmartStay</title>
+  <link rel="stylesheet" href="./assets/css/global.css">
+  <link rel="stylesheet" href="./assets/css/property-details.css">
+</head>
+<body>
+   <aside class="sidebar">
+    <a href="index.html" class="logo">SmartStay</a>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="bookings.html">Bookings</a>
+      <a href="properties.html">Properties</a>
+      <a href="locks.html">Locks</a>
+      <a href="notifications.html">Notifications <span class="badge" style="display:none;"></span></a>
+      <a href="settings.html">Settings</a>
+      <a href="signout.html">Sign Out</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+     <header class="topbar">
+  <h1>Properties Details</h1>
+  <div class="user-menu">
+    <button class="user-btn">👤 Admin ▾</button>
+    <div class="dropdown">
+      <a href="profile.html">Profile</a>
+      <a href="signout.html" class="logout">Sign Out</a>
+    </div>
+  </div>
+</header>
+
+    <div class="details-card">
+      <h2>Apartment 21</h2>
+      <p><strong>Property ID:</strong> <span class="highlight">PROP001</span></p>
+      <p><strong>Location:</strong> Lagos</p>
+      <p><strong>Host:</strong> John Doe</p>
+      <p><strong>Status:</strong> <span class="status active">Active</span></p>
+      <p><strong>Total Bookings:</strong> 5</p>
+
+      <div class="actions">
+        <button class="btn">Edit Property</button>
+        <button class="btn danger">Deactivate</button>
+        <button class="btn">Copy Property ID</button>
+        <a href="properties.html" class="btn secondary">Back</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

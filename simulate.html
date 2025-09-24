@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<h2>Simulate Airbnb Webhook</h2>
+<form id="simulateForm">
+  <label>Property ID:</label>
+  <input type="text" id="simulateProperty" required title="Enter Property ID" placeholder="Enter Property ID">
+  <button type="submit">Simulate Booking</button>
+</form>
+
+<p id="simulateResult"></p>
+
+<script src="script.js"></script>
+<script>
+  document.getElementById("simulateForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const propertyId = document.getElementById("simulateProperty").value;
+
+    const res = await fetch(`${API_BASE}/simulate/simulate-booking/${propertyId}`, {
+      method: "POST"
+    });
+
+    const data = await res.json();
+    document.getElementById("simulateResult").innerText =
+      "Booking Created! Guest: " + data.booking.guestName + " | Lock Code: " + data.lockCode;
+  });
+</script>
+
+
+
+
+</body>
+</html>

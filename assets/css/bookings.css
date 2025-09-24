@@ -1,0 +1,87 @@
+/* =====================
+   Booking Page Specific
+===================== */
+
+/* Actions Row (Add Booking & Airbnb Connect) */
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Manual Booking Form */
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 30px;
+  max-width: 600px;
+}
+
+.form-container h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #1e293b;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container label {
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 5px;
+}
+
+.form-container input,
+.form-container select {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Actions Section */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.actions .btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.actions .btn.secondary {
+  background: #e2e8f0;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  transition: background 0.2s;
+}
+
+.actions .btn.secondary:hover {
+  background: #cbd5e1;
+}
