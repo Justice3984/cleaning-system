@@ -1,5 +1,4 @@
 const API_BASE = "https://cleaning-system-backend-3.onrender.com";
-const token = localStorage.getItem("token");
 
 // Redirect if no token
 if (!token) {
