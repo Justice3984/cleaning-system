@@ -8,7 +8,7 @@
     const password = document.getElementById("password").value;
 
     try {
-      const response = await fetch("https://cleaning-system-one.vercel.app/api/users/register", { 
+      const response = await fetch("https://cleaning-system-backend-3.onrender.com/api/users/register", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json"
